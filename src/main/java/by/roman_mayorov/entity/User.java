@@ -17,6 +17,9 @@ import java.time.LocalDate;
 public class User {
 
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
+    @Column(unique = true, nullable = false)
     private String username;
     @Column(name = "first_name")
     private String firstName;
@@ -27,4 +30,7 @@ public class User {
     private Integer age;
     @Enumerated(EnumType.STRING)
     private Role role;
+    @ManyToOne(cascade = CascadeType.ALL)
+    @JoinColumn(name = "company_id")
+    private Company company;
 }
